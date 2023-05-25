@@ -68,7 +68,7 @@ export class MealDetailsComponent {
         })
       }
     })
-    // this.Router.navigate(['/cart'])
+    this.Router.navigate(['/cart'])
   }
 
 }
