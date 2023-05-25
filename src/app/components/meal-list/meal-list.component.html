@@ -1,0 +1,137 @@
+<section class="d-flex justify-content-center mt-4">
+  <input class="c-checkbox" type="checkbox" id="checkbox" />
+  <div class="c-formContainer">
+    <div class="c-form">
+      <input
+        class="c-form__input"
+        placeholder="search for your meal ..."
+        type="text"
+        [(ngModel)]="searchTerm"
+        (keypress)="searchMeals()"
+      />
+      <label class="c-form__buttonLabel" for="checkbox"> </label>
+      <label
+        class="c-form__toggle"
+        for="checkbox"
+        data-title="Notify me"
+      ></label>
+    </div>
+  </div>
+</section>
+<section class="mt-2">
+  <div class="container position-relative">
+    <div
+      class="loading position-absolute top-0 start-0 w-100 vh-100 justify-content-center align-items-start d-none"
+      #loading
+    >
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+    <div class="border-main">
+      <h1 class="">HOT</h1>
+    </div>
+    <div class="row gy-4">
+      <div
+        class="col-md-12 d-flex align-items-center"
+        *ngFor="let meal of meals | filter : searchTerm"
+      >
+        <p-card header="Create Your Own :">
+          <div class="d-flex justify-content-between flex-wrap">
+            <div
+              class="meal rounded-2 overflow-hidden position-relative cursor"
+            >
+              <img [src]="meal.imageUrl" class="w-100" [alt]="meal.name" />
+            </div>
+            <div class="w-75 ps-4">
+              <div class="mt-1 d-flex justify-content-between flex-wrap">
+                <h3>
+                  Build your own {{ meal.name }}
+                  <br />
+                  <span class="text-muted opacity-50 h6">
+                    minumum order : 1</span
+                  >
+                </h3>
+                <h3>
+                  <span
+                    >{{ meal.price | currency : "GBP" : "symbol" }} per
+                    head</span
+                  >
+                </h3>
+              </div>
+              <div>
+                <span>choose your base , topping and garnish</span>
+              </div>
+              <div class="my-2">
+                <span
+                  >Dish origins :
+                  <span *ngFor="let item of meal.origins">{{
+                    item
+                  }}</span></span
+                >
+              </div>
+              <div class="my-2">
+                <span class="d-flex align-items-center">
+                  <mat-icon style="color: red" *ngIf="meal.favorite"
+                    >favorite</mat-icon
+                  >
+                  <mat-icon style="color: gray" *ngIf="!meal.favorite"
+                    >favorite</mat-icon
+                  >
+                </span>
+              </div>
+              <div class="my-2">
+                <span>
+                  <star-rating
+                    [value]="meal.stars"
+                    [totalstars]="5"
+                    checkedcolor="red"
+                    uncheckedcolor="gray"
+                    size="24px"
+                    [readonly]="true"
+                  ></star-rating>
+
+                  <p-rating
+                    [(ngModel)]="meal.stars"
+                    [readonly]="true"
+                    [cancel]="false"
+                  ></p-rating>
+                </span>
+              </div>
+              <div class="my-2">
+                <span class="d-flex align-items-center">
+                  <mat-icon class="me-2">alarm</mat-icon>
+                  {{ meal.cookTime }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="px-1 mt-4 d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center">
+              <mat-icon class="mat-18">local_dining </mat-icon>
+              <span class="text-center ms-3"
+                >Individual <br />
+                potion</span
+              >
+            </div>
+            <div>
+              <button
+                class="btn bg-main p-3 rounded-0"
+                [routerLink]="['/mealDetalis', meal.id]"
+              >
+                VIEW
+              </button>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</section>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0)"
+  size="large"
+  color="#fff"
+  type="pacman"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<p-scrollTop></p-scrollTop>

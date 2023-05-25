@@ -1,0 +1,139 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import "primeicons/primeicons.css";
+
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -100%;
+    margin-top: var(--bs-dropdown-spacer);
+}
+.text-main{
+  color: #E16120;
+}
+.bg-main{
+  background-color: #E16120;
+  color: white;
+}
+.bg-main:hover{
+  background-color: #e16020d2;
+  color: white;
+}
+.navbar{
+  border-color: #E16120 !important;
+}
+.btn-main{
+  color: #E16120 !important;
+  background-color: transparent !important;
+  border: 1px solid #E16120 !important;
+}
+.border-main{
+  border-bottom: 2px solid #E16120 !important;
+
+}
+.btn-main:hover{
+  border: 1px solid #E16120 !important;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.la-pacman > div:nth-child(1) , .la-pa3ancman > div:nth-child(2)
+{
+  display: block;
+}
+
+
+
+.meal{
+  width: 25%;
+}
+.Icons{
+  font-size: 1.2rem !important;
+}
+
+@media screen and (max-width : 600px) {
+  .p-tabmenu-nav .p-menuitem-text {
+    line-height: 1;
+    white-space: nowrap;
+    font-size: 10px;
+    margin-inline: -10px;
+  }
+  .meal{
+    width: 100%;
+  }
+  .Icons{
+    font-size: 0.2rem !important;
+    display: none;
+  }
+  .yummy{
+    display: none;
+  }
+
+  .p-toast-top-right {
+    top: 0 !important;
+  right: 0 !important;
+  }
+
+  .p-toast {
+      position: absolute !important;
+      width: 100% !important;
+  }
+  .p-card .p-card-body{
+    padding: 0 !important;
+  }
+}
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #F90;
+	background-image: -webkit-linear-gradient(90deg,
+    rgba(255, 255, 255, .2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, .2) 50%,
+    rgba(255, 255, 255, .2) 75%,
+    transparent 75%,
+    transparent)
+}
+.p-scrolltop.p-link {
+  background: #E16120 ;
+}
+.p-scrolltop.p-link:hover {
+  background: #E16120 ;
+}
+.p-rating .p-rating-icon.pi-star-fill {
+  color: red;
+}
+.p-rating .p-rating-icon {
+  color: #495057;
+  margin-left: 0.5rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  font-size: 1.143rem;
+  // background-color:#495057 ;
+}

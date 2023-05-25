@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="border-main">
+        <h2>Orders Items : {{ noOFCart }}</h2>
+      </div>
+    </div>
+    <div class="col-md-6 mt-4 px-2" *ngFor="let meal of cartitems">
+      <div class="row h-100">
+        <div class="col-md-6 mt-3">
+          <div class="w-100">
+            <img class="w-100" [src]="meal.imageUrl" alt="Title" />
+          </div>
+        </div>
+        <div class="col-md-6 mt-3">
+          <div class="">
+            <h4 class="card-title">{{ meal.name }}</h4>
+            <h5 class="card-text pe-2 my-2">
+              Total Price :
+              {{ meal.toltalPrice | currency : "GBP" : "symbol" }} per head
+            </h5>
+            <div class="my-2">
+              <span class="d-flex align-items-center">
+                <mat-icon style="color: red" *ngIf="meal.favorite"
+                  >favorite</mat-icon
+                >
+                <mat-icon style="color: gray" *ngIf="!meal.favorite"
+                  >favorite</mat-icon
+                >
+              </span>
+            </div>
+            <div class="my-2">
+              <span>
+                <p-rating
+                [(ngModel)]="meal.stars"
+                [readonly]="true"
+                [cancel]="false"
+              ></p-rating>
+              </span>
+            </div>
+            <div class="my-2">
+              <span class="d-flex align-items-center">
+                <mat-icon class="me-2">outdoor_grill</mat-icon>
+                <strong class="me-2">{{ meal.noOfItem }}</strong> meal(s).
+              </span>
+            </div>
+            <div class="my-2">
+              <span class="d-flex align-items-center">
+                <mat-icon class="me-2">alarm</mat-icon>
+                <strong class="me-2">{{ meal.cookTime }}</strong> min.
+              </span>
+            </div>
+            <div class="my-2">
+              <span class="d-flex align-items-center">
+                <mat-icon class="me-2">microwave_gen</mat-icon>
+                on cocking
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card-body mt-4">
+            <div class="mt-1" *ngIf="meal.add.length > 0">
+              <h6>Addition:</h6>
+              <div class="d-flex my-0 gap-2 text-main ms-2">
+                <p *ngFor="let add of meal.add; let last = last">
+                  {{ add }} <span *ngIf="!last">,</span>
+                </p>
+              </div>
+            </div>
+            <div class="mt-1" *ngIf="meal.topp.length > 0">
+              <h6>Toppings:</h6>
+              <div class="d-flex my-0 gap-2 text-main ms-2">
+                <p *ngFor="let topp of meal.topp; let last = last">
+                  {{ topp }} <span *ngIf="!last">,</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card-body mt-4">
+            <div class="mt-1" *ngIf="meal.sauces.length > 0">
+              <h6>Sauces:</h6>
+              <div class="d-flex my-0 gap-2 text-main ms-2">
+                <p *ngFor="let sauces of meal.sauces; let last = last">
+                  {{ sauces }} <span *ngIf="!last">,</span>
+                </p>
+              </div>
+            </div>
+            <div class="mt-1" *ngIf="meal.extra.length > 0">
+              <h6>Extra:</h6>
+              <div class="d-flex my-0 gap-2 text-main ms-2">
+                <p *ngFor="let extra of meal.extra; let last = last">
+                  {{ extra }} <span *ngIf="!last">,</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card-body mt-4">
+            <div class="mt-1" *ngIf="meal.instr !== null">
+              <h6>Addiional Instructions:</h6>
+              <div class="d-flex my-0 gap-2 text-main ms-2">
+                <p>{{ meal.instr }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0)"
+  size="large"
+  color="#fff"
+  type="pacman"
+  [fullScreen]="true"
+></ngx-spinner>
+<p-scrollTop></p-scrollTop>

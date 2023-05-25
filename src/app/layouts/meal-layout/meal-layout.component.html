@@ -1,0 +1,37 @@
+  <mat-toolbar class="d-flex justify-content-between bg-main text-white ">
+    <div class="d-flex align-items-center">
+      <button mat-icon-button  aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="font-family: 'Allura', cursive;" class="cursor yummy">Yummy App</span>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <div class="Icons">
+        <a href="https://twitter.com/abdelrhmanBadr6">
+          <i class="pi pi-twitter text-white" ></i>
+        </a>
+        <a href="https://web.facebook.com/dedo.badran">
+          <i class="pi pi-facebook mx-2 text-white" ></i>
+        </a>
+        <a href="https://www.linkedin.com/in/abdelrhman-badran-581589257/">
+          <i class="pi pi-linkedin mx-2 text-white" ></i>
+        </a>
+        <a href="https://www.instagram.com/abdelrhman_badran/">
+          <i class="pi pi-instagram mx-2 text-white" ></i>
+        </a>
+      </div>
+      <button mat-icon-button class="example-icon" routerLink="/cart" aria-label="Example icon-button with share icon"  >
+        <i class="pi pi-shopping-cart mx-1 greenColor cursor"   pBadge [value]="noOFCart" severity="success" style="font-size: 1.5rem; "></i>
+      </button>
+      <button mat-icon-button class="example-icon" routerLink="/meals" aria-label="Example icon-button with share icon"  >
+        <i class="pi pi-home mx-1 text-primary cursor" style="font-size: 1.5rem; "></i>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon"  (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+<router-outlet></router-outlet>
+

@@ -1,0 +1,69 @@
+<div class="position-relative d-flex justify-content-center">
+  <ngx-spinner bdColor = "rgba(0, 0, 0)" size = "large" color = "#fff" type = "pacman" [fullScreen] = "true"></ngx-spinner>
+</div>
+
+<div class="container position-relative">
+  <p-toast></p-toast>
+</div>
+
+
+<section class="box">
+  <div class="form-structor" #formBox>
+    <form class="signup" [formGroup]="registerForm" (ngSubmit)="register($event)">
+      <h2 class="form-title cursor" #signup (click)="slideDownSignUp($event)"><span>or</span>Sign up</h2>
+      <div class="form-holder">
+        <div class="field p-fluid">
+          <input id="username" type="text" placeholder="name"  formControlName="name" aria-describedby="username-help" [ngClass]="{'ng-dirty': registerForm.get('name')?.errors ,'ng-invalid ': registerForm.get('name')?.errors }" pInputText />
+          <br>
+          <small  id="username-help" class="p-error ms-2" *ngIf="registerForm.get('name')?.getError('required')   && registerForm.get('name')?.dirty ">name is Required</small>
+        </div>
+        <div class="field p-fluid">
+          <input  type="email" placeholder="Email"  formControlName="email" aria-describedby="username-help" [ngClass]="{'ng-dirty': registerForm.get('email')?.errors ,'ng-invalid ': registerForm.get('email')?.errors }" pInputText />
+          <br>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('email')?.getError('required')   && registerForm.get('email')?.dirty ">Email is Required.</small>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('email')?.getError('email')  && registerForm.get('email')?.dirty ">Enter Valid Email.</small>
+        </div>
+        <div class="field p-fluid">
+          <input id="username" type="password"  placeholder="password" formControlName="password" aria-describedby="username-help" [ngClass]="{'ng-dirty': registerForm.get('password')?.errors ,'ng-invalid ': registerForm.get('password')?.errors }" pInputText />
+          <br>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('password')?.getError('required')   && registerForm.get('password')?.dirty ">password is Required.</small>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('password')?.getError('pattern')   && registerForm.get('password')?.dirty ">password must be at least 6 items.</small>
+        </div>
+        <div class="field p-fluid">
+          <input id="username" type="password"  placeholder="rePassword" formControlName="rePassword" aria-describedby="username-help" [ngClass]="{'ng-dirty': registerForm.get('rePassword')?.errors ,'ng-invalid ': registerForm.get('rePassword')?.errors }" pInputText />
+          <br>
+          <small id="username-help" class="p-error ms-2"  *ngIf="registerForm.get('rePassword')?.getError('required')  && registerForm.get('rePassword')?.dirty ">rePassword is Required.</small>
+          <small id="username-help" class="p-error ms-2"  *ngIf="registerForm.get('rePassword')?.getError('passwordMatch')  && registerForm.get('rePassword')?.dirty ">rePassword must match.</small>
+        </div>
+        <div class="field p-fluid">
+          <input id="username" type="tel" placeholder="phone"  formControlName="phone" aria-describedby="username-help"  [ngClass]="{'ng-dirty': registerForm.get('phone')?.errors ,'ng-invalid ': registerForm.get('phone')?.errors  }" pInputText />
+          <br>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('phone')?.getError('required')  && registerForm.get('phone')?.dirty ">phone is Required.</small>
+          <small id="username-help" class="ms-2 p-error"  *ngIf="registerForm.get('phone')?.getError('pattern')  && registerForm.get('phone')?.dirty ">Enter valid number.</small>
+
+        </div>
+      </div>
+      <button class="btn btn-main text-white d-block mt-2 mx-auto"  pButton pRipple>Sign up</button>
+    </form>
+    <form class="login slide-up" [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <div class="center">
+        <h2 class="form-title cursor" #login (click)="slideDownLogin($event)"><span>or</span>Log in</h2>
+        <div class="form-holder">
+          <div class="field p-fluid">
+            <input id="username" type="email"  placeholder="Email" formControlName="email" aria-describedby="username-help" [ngClass]="{'ng-dirty': loginForm.get('email')?.errors ,'ng-invalid ': loginForm.get('email')?.errors }" pInputText />
+            <br>
+            <small id="username-help" class="ms-2 p-error"  *ngIf="loginForm.get('email')?.getError('required')   && loginForm.get('email')?.dirty ">Email is Required.</small>
+            <small id="username-help" class="ms-2 p-error"  *ngIf="loginForm.get('email')?.getError('email')  && loginForm.get('email')?.dirty ">Enter Valid Email.</small>
+          </div>
+          <div class="field p-fluid">
+            <input id="username" type="password" placeholder="password"  formControlName="password" aria-describedby="username-help"  [ngClass]="{'ng-dirty': loginForm.get('password')?.errors ,'ng-invalid ': loginForm.get('password')?.errors  }" pInputText />
+            <br>
+            <small id="username-help" class="ms-2 p-error"  *ngIf="loginForm.get('password')?.getError('required')  && loginForm.get('password')?.dirty ">password is Required.</small>
+          </div>
+        </div>
+        <button class="btn btn-main text-white d-block mt-2 mx-auto w-50" [disabled]="loginForm.invalid">Log in</button>
+      </div>
+    </form>
+  </div>
+
+</section>

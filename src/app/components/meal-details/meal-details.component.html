@@ -1,0 +1,273 @@
+<div
+  class="header d-flex justify-content-between align-items-center mt-3 px-3 border-main"
+>
+  <h1 class="h2">
+    bulid your own meal <span class="h6 text-muted">(Minmum order: 1)</span>
+  </h1>
+  <mat-icon class="mat-18 text-main cursor" routerLink="/meals">close</mat-icon>
+</div>
+<div class="container px-5">
+  <div class="row">
+    <div class="mealDetails my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="rounded-2 overflow-hidden">
+            <img [src]="mealDetails[0].imageUrl" class="w-100" alt="" />
+          </div>
+        </div>
+        <div class="col-md-7 me-auto">
+          <p class="fs-6 mt-1">
+            Build Your Own {{ mealDetails[0].name }} by choosing veg. base from
+            3 choices , topping , extra sauces or garnishes
+          </p>
+          <br />
+          <br />
+          <p>
+            Its primary ingredient is ground beef and pork. Either meat is used
+            in varying degrees, but pork is the most typical ingredient.
+          </p>
+
+          <div class="my-2">
+            <span class="d-flex align-items-center">
+              <mat-icon style="color: red" *ngIf="mealDetails[0].favorite"
+                >favorite</mat-icon
+              >
+              <mat-icon style="color: gray" *ngIf="!mealDetails[0].favorite"
+                >favorite</mat-icon
+              >
+            </span>
+          </div>
+          <div class="my-2">
+            <span>
+              <p-rating
+              [(ngModel)]="mealDetails[0].stars"
+              [readonly]="true"
+              [cancel]="false"
+            ></p-rating>
+            </span>
+          </div>
+          <div class="my-2 d-flex justify-content-between">
+            <span class="d-flex align-items-center">
+              <mat-icon class="me-2">alarm</mat-icon>
+              <strong class="me-2">{{ mealDetails[0].cookTime }}</strong> min.
+            </span>
+            <div class="px-1 mt-2 d-flex justify-content-between">
+              <div class="d-flex justify-content-center align-items-center">
+                <mat-icon class="mat-18">local_dining </mat-icon>
+                <span class="text-center ms-3"
+                  >Individual <br />
+                  potion</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <form [formGroup]="mealGroup">
+        <p-accordion [multiple]="true" [activeIndex]="[0]">
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center">
+                <span class="vertical-align-middle">
+                  <h4 class="text-info">
+                    Base *<span class="h6 text-info">Reqiured 1 selected</span>
+                  </h4>
+                </span>
+              </div>
+            </ng-template>
+            <div>
+              <div class="flex align-items-center gap-1">
+                <div
+                  *ngFor="let item of mealDetails[0].add; let index = index"
+                  class="my-4"
+                >
+                  <p-checkbox
+                    [(ngModel)]="selectedAdd"
+                    formControlName="add"
+                    [value]="item"
+                    [inputId]="item"
+                  ></p-checkbox>
+                  <label [for]="item" class="ms-2"
+                    >{{ item }}
+                    <span *ngIf="index > 0">
+                      ({{ "0.8" | currency : "GBP" : "symbol" }} per head)</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center">
+                <h4>
+                  Toppings<span class="h6 ms-2">select up to 1 (optional)</span>
+                </h4>
+              </div>
+            </ng-template>
+            <div>
+              <div class="flex align-items-center gap-1">
+                <div
+                  *ngFor="
+                    let item of mealDetails[0].toppings;
+                    let index = index
+                  "
+                  class="my-4"
+                >
+                  <p-checkbox
+                    formControlName="topp"
+                    [(ngModel)]="selectedTopp"
+                    [value]="item"
+                    [inputId]="item"
+                  ></p-checkbox>
+                  <label [for]="item" class="ms-2"
+                    >{{ item }}
+                    <span>
+                      ({{ "1.2" | currency : "GBP" : "symbol" }} per head)</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center">
+                <h4>
+                  Sauces *<span class="h6 ms-2">Required selected 1</span>
+                </h4>
+              </div>
+            </ng-template>
+            <div>
+              <div class="flex align-items-center gap-1">
+                <div
+                  *ngFor="let item of mealDetails[0].sauces; let index = index"
+                  class="my-4"
+                >
+                  <p-checkbox
+                    formControlName="sauces"
+                    [(ngModel)]="selectedSauce"
+                    [value]="item"
+                    [inputId]="item"
+                  ></p-checkbox>
+                  <label [for]="item" class="ms-2"
+                    >{{ item }}
+                    <span>
+                      ({{ "0.65" | currency : "GBP" : "symbol" }} per
+                      head)</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab>
+            <ng-template pTemplate="header">
+              <div class="flex align-items-center">
+                <h4>
+                  Extras <span class="h6 ms-2">select up to 4 (optional)</span>
+                </h4>
+              </div>
+            </ng-template>
+            <div>
+              <div class="flex align-items-center gap-1">
+                <div
+                  *ngFor="let item of mealDetails[0].extra; let index = index"
+                  class="my-4"
+                >
+                  <p-checkbox
+                    formControlName="extra"
+                    [(ngModel)]="selectedExtra"
+                    [value]="item"
+                    [inputId]="item"
+                  ></p-checkbox>
+                  <label [for]="item" class="ms-2"
+                    >{{ item }}
+                    <span>
+                      ({{ "0.3" | currency : "GBP" : "symbol" }} per head)</span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+        <hr />
+        <div class="row flex-wrap">
+          <div class="p-float-label col-md-6">
+            <textarea
+              id="float-input"
+              class="w-100"
+              rows="5"
+              pInputTextarea
+              formControlName="instr"
+              [autoResize]="true"
+            ></textarea>
+            <label for="float-input">Special instructions</label>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column">
+              <p-inputNumber
+                [(ngModel)]="NOItems"
+                [showButtons]="true"
+                buttonLayout="vertical"
+                spinnerMode="vertical"
+                inputId="vertical"
+                decrementButtonClass="p-button-secondary"
+                incrementButtonClass="p-button-secondary"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                formControlName="noOfItem"
+              ></p-inputNumber>
+              <small
+                class="text-danger"
+                *ngIf="mealGroup.get('noOfItem')?.getError('pattern')"
+                >Number of item is required
+              </small>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="">
+            <div class="d-flex align-items-end flex-wrap">
+              <h2>
+                {{
+                  (NOItems > 0 ? NOItems : 1) *
+                    (mealDetails[0].price +
+                      selectedAdd.length * 0.8 +
+                      selectedTopp.length * 1.2 +
+                      selectedSauce.length * 0.65 +
+                      selectedExtra.length * 0.3) | currency : "GBP" : "symbol"
+                }}
+              </h2>
+              <p class="ms-3 text-muted">
+                {{ mealDetails[0].price }}
+                per head
+              </p>
+            </div>
+            <p>All prices are without VAT</p>
+          </div>
+          <div>
+            <button class="btn bg-main p-2 rounded-0"
+            [disabled]="mealGroup.invalid"
+            (click)="addToCart()">
+              ADD
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0)"
+    size="large"
+    color="#fff"
+    type="pacman"
+    [fullScreen]="true"
+  ></ngx-spinner>
+  <p-scrollTop></p-scrollTop>
+</div>

@@ -1,0 +1,8 @@
+.landing{
+  background-image: url(../../../assets/images/food4.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 62px);
+  clip-path: polygon(0% 0%, 0% 100%, 50% 100%, 50% 0, 50% 0, 50% 76%, 50% 76%, 50% 100%, 100% 100%, 100% 0%);
+}
