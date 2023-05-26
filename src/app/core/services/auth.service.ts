@@ -41,6 +41,7 @@ export class AuthService {
   logout()
   {
     localStorage.removeItem('uToken');
+    this.userData.next(null)
     this._Router.navigate(['/login'])
   }
 }

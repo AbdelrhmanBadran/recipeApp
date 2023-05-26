@@ -4,6 +4,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  height: calc(100vh - 62px);
+  min-height: calc(100vh - 63px);
 }
 
+@media screen and (max-width : 600px) {
+  .auth{
+    min-height: calc(100vh - 53px);
+  }
+}

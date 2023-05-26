@@ -1,0 +1,10 @@
+.box-container
+{
+  margin-top: 16*5px;
+}
+@media screen and (max-width:600px) {
+  .box-container
+  {
+    margin-top: 16px;
+  }
+}
